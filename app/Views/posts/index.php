@@ -1,8 +1,8 @@
-<?=$this->extend('template');?>
-<?=$this->section('content');?>
-
+<?= $this->extend('template'); ?>
+<?= $this->section('content'); ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -51,32 +51,28 @@
       </div>
 
       <!-- SidebarSearch Form -->
-      <div class="form-inline">
-       
-      </div>
+      
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="/admin" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
             </a>
-          </li>
-          <li class="nav-item">
+            <li class="nav-item menu">
             <a href="/admin/posts" class="nav-link">
-              <i class="nav-icon fas fa-book-open"></i>
+              <i class="nav-icon fas "></i>
               <p>
-                My Posts
+                My Post
               </p>
             </a>
-          </li>
-       
+        </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -90,7 +86,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">My Post</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -102,9 +98,15 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
-   
-        
+    <!-- /.main content -->
+    <div class="container">
+        <a href="/admin/posts/create" class="btn btn-primary"><i class="fas fa-plus"></i>Tambah Data</a>
+    </div>
+    <!-- /.main content -->
+          <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
@@ -125,4 +127,4 @@
 </div>
 <!-- ./wrapper -->
 
-<?=$this->endSection(); ?>
+<?= $this->endSection(); ?>

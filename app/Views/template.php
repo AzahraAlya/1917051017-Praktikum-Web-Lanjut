@@ -18,7 +18,7 @@
   <!-- JQVMap -->
   <link rel="stylesheet" href="/assets/alte/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="assets/alte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/assets/alte/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="/assets/alte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
@@ -59,10 +59,13 @@
 <!-- overlayScrollbars -->
 <script src="/assets/alte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="assets/alte/dist/js/adminlte.js"></script>
+<script src="/assets/alte/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="assets/alte/dist/js/demo.js"></script>
+<script src="/assets/alte/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="assets/alte/dist/js/pages/dashboard.js"></script>
+<script src="/assets/alte/dist/js/pages/dashboard.js"></script>
 </body>
+
+<?=$this->renderSection('myscript'); ?>
 </html>
+
