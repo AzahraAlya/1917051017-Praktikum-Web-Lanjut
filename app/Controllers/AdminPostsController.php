@@ -82,4 +82,50 @@ class AdminPostsController extends BaseController
 			return redirect()->to(base_url('admin/posts/create'))->withInput()->with('validation',$this->validator);
 		}
 	}
+
+	public function delete($post_id){
+		$PostModel = model("PostModel");
+		$PostModel->delete($post_id);
+		// session()->setFlashdata('pesan', 'Data berhasil dihapus');
+		return redirect()->to(base_url('admin/posts'));
+	}
+
+	public function edit($slug){
+		$PostModel = model("PostModel");
+	
+		$data =[
+			// 'posts' => $PostModel->findAll(),
+			'title' => 'Form Update', 
+			'validation' => \Config\Services::validation(),
+			'post' => $PostModel->getPost($slug)
+			
+		];
+		
+		return view('posts/edit', $data); 
+	}
+
+	public function update($post_id){
+
+		$PostModel = model("PostModel");		
+		$request = \Config\Services::request();
+
+		// $slug = url_title($request->getVar('judul'), '-', true);
+			$PostModel->save([
+			'post_id' => $post_id,
+			'judul' => $request->getVar('judul'),
+			'slug' => $request->getVar('slug'),
+			// 'slug' => $slug,
+			'kategori' => $request->getVar('kategori'),
+			'author' => $request->getVar('author'),
+			'deskripsi' => $request->getVar('deskripsi'),
+		]);
+
+		return redirect()->to(base_url('admin/posts'));
+		
+		
+	
+
+		
+		
+	}
 }

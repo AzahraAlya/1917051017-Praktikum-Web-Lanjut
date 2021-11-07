@@ -1,8 +1,7 @@
 <?= $this->extend('template'); ?>
+
 <?= $this->section('content'); ?>
-
 <body class="hold-transition sidebar-mini layout-fixed">
-
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -50,9 +49,6 @@
         </div>
       </div>
 
-      <!-- SidebarSearch Form -->
-      
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -65,13 +61,16 @@
                 Dashboard
               </p>
             </a>
-            <li class="nav-item menu">
+</li>
+          <li class="nav-item">
             <a href="/admin/posts" class="nav-link">
-              <i class="nav-icon fas "></i>
+              <i class="nav-icon fas fa-book-open"></i>
               <p>
-                My Post
+                My Posts
               </p>
             </a>
+</li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -86,7 +85,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">My Post</h1>
+            <h1 class="m-0">My Posts Update</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -97,62 +96,77 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
+
     <!-- /.content-header -->
-    <!-- /.main content -->
+    <!-- Main Content-->
     <div class="container">
-        <a href="/admin/posts/create" class="btn btn-primary"><i class="fas fa-plus"></i>Tambah Data</a>
-    </div>
-    <!-- /.main content -->
+    <div class="card">
+  <div class="card-header">
+    Form Update
+  </div>
+  <div class="card-body">
 
-          <!-- right col -->
-      
-      <!-- /.container-fluid -->
+  <form action="/admin/posts/update/<?=$post['post_id']; ?>" method="POST">
+      <div class="row">
+  <div class="col-md-4">
     
-    <div class="card mt-3">
-      <div class="card-header">
-          Daftar Postingan
-      </div>
-      <div class="card-body">
-      <div class="table-responsive">
-          <table class="table table-striped text-center">
-              <thead>
-                <tr>
-                  <th scope="col">No.</th>
-                  <th scope="col">Judul</th>
-                  <th scope="col">Slug</th>
-                  <th scope="col">Author</th>
-                  <th scope="col">Kategori</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php foreach ($posts as $i => $post) : ?>
-                <tr>
-                  <th scope="row"><?= $i + 1;?></th>
-                  <td><?= $post['judul']; ?></td>
-                  <td><?= $post['slug']; ?></td>
-                  <td><?= $post['author']; ?></td>
-                  <td><?= $post['kategori']; ?></td>
-                  <td>
-                    <a href="/admin/posts/edit/<?= $post['slug'];?>" class="btn btn-sm btn-warning me-1"><i class="fas fa-edit"></i>Edit</a>
-                    
-                    <form action="/admin/posts/delete/<?= $post['post_id']; ?>" method="post" class="d-inline">
-                  <input type="hidden" name = "_method" value = "DELETE" />
-                  <button type ="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin?');">Delete</button>
-                  </form>
-                   
-                  </td>
-                </tr>
-                <?php endforeach; ?>
-              </tbody>
-            </table>
+      <div class ="form-grup">
+          <label for="judul" >Judul Postingan</label>
+          <input type="text" class="form-control  <?= ($validation->hasError('judul')) ? 'is-invalid' : '';?>" id="judul" name="judul" value="<?= $post['judul'];?>"> 
+          <?php if ($validation->hasError('judul')): ?>
+            <div class="invalid-feedback">
+                <?=$validation->getError("judul"); ?>
+            </div>
+          <?php endif; ?>
+        </div>
+        <div class ="form-grup">
+            <label for="slug" >Slug</label>
+            <input type="text" class="form-control <?= ($validation->hasError('slug')) ? 'is-invalid' : '';?>" id="slug" name="slug" value="<?= $post['slug'];?>" >
+            <?php if ($validation->hasError('slug')): ?>
+            <div class="invalid-feedback">
+                <?=$validation->getError("slug"); ?>
+            </div>
+          <?php endif; ?>
+        </div>
+        <div class ="form-grup">
+            <label for="kategori" >Kategori Postingan</label>
+            <input type="text" class="form-control <?= ($validation->hasError('kategori')) ? 'is-invalid' : '';?>" id="kategori" name="kategori" value="<?= $post['kategori'];?>">
+            <?php if ($validation->hasError('kategori')): ?>
+            <div class="invalid-feedback">
+                <?=$validation->getError("kategori"); ?>
+            </div>
+          <?php endif; ?>
+        </div>
+        <div class ="form-grup">
+            <label for="author" >Author</label>
+            <input type="text" class="form-control <?= ($validation->hasError('author')) ? 'is-invalid' : '';?> " id="author" name="author" value="<?= $post['author'];?>">
+            <?php if ($validation->hasError('author')): ?>
+            <div class="invalid-feedback">
+                <?=$validation->getError("author"); ?>
+            </div>
+          <?php endif; ?>
+        </div><br>
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i>Update</button>
+        </div>
+
+        <div class ="col-md-8">
+            <label for="deskripsi">Deskripsi Postingan</label><br>
+            <textarea class="form-control <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : '';?>" name="deskripsi" id="deskripsi"> <?= $post['deskripsi'];?></textarea>
+            <?php if($validation->hasError('deskripsi')) : ?>
+            <div class="invalid-feedback">
+              <?= $validation->getError("deskripsi"); ?>
+            </div>
+            <?php endif;?>
           </div>
-      </div>
     </div>
+  </form>
+    
+</div>
+    </div> 
+</div>
+    <!-- bakal diubah-->
 
-    </section>
-
-    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -171,4 +185,11 @@
 </div>
 <!-- ./wrapper -->
 
+
 <?= $this->endSection(); ?>
+
+<?=$this->section('myscript'); ?>
+<script>
+    $('#deskripsi').summernote()
+</script>
+<?=$this->endSection(); ?>
